@@ -3,6 +3,7 @@ from PIL import Image, ImageTk
 import pickle
 import FileGUI
 import Tumblr
+import LoginManager
 
 # Creates a root for tk
 tk_root = tk.Tk()
