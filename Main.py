@@ -3,7 +3,7 @@ from PIL import Image, ImageTk
 import pickle
 import FileGUI
 import Tumblr
-import LoginManager
+import subprocess
 
 # Creates a root for tk
 tk_root = tk.Tk()
@@ -19,11 +19,12 @@ tk.Label(tk_root, text="OPEN CROSSPOSTER").pack()
 tk.Label(tk_root, text="* * *").pack()
 
 # Makes the button to edit the login info
-tk.Button(tk_root, text="Edit Login Info").pack()
+def editLoginInfo():
+    subprocess.run(["python", "LoginManager.py"]) # SO janky but it works
+tk.Button(tk_root, text="Edit Login Info", command=editLoginInfo).pack()
 
 # Makes the button to make a post
 tk.Button(tk_root, text="Make Post", command=FileGUI.getFile).pack()
-
 
 # Loops the window
 tk_root.mainloop()

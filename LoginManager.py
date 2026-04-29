@@ -2,6 +2,7 @@ import tkinter as tk
 import pickle
 
 
+
 class LoginManager:
 
     
@@ -23,6 +24,17 @@ class LoginManager:
         self.bsky_password = tk.StringVar()
         self.reddit_username = tk.StringVar()
         self.reddit_password = tk.StringVar()
+
+        # Checks if login info file exists, if so, load into variables
+        try:
+            login_data = pickle.load(open(self.LOGIN_DATA_FILE, 'rb'))
+
+            self.tumblr_username.set(login_data["tumblr_username"])
+            self.tumblr_password.set(login_data["tumblr_password"])
+            print(login_data)
+
+        except:
+            print("Login data file not found.")
 
 
         # Makes the window title
@@ -68,8 +80,5 @@ class LoginManager:
         }
         pickle.dump(login_data, open(self.LOGIN_DATA_FILE, mode='wb'))
         print("Data Saved")
-    
-    # Reads the data from the save file as a dict
-    def deserializeData(self):
-        return pickle.load(open(self.LOGIN_DATA_FILE, 'rb'))
-        
+
+LoginManager()
